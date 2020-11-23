@@ -7,8 +7,9 @@
     <span v-if="debits.length">
       -{{ debits }}{{' '}}
     </span>
-    <button>Add Credit</button>
-    <button>Add Debit</button>
+    <button v-on:click="toggleEditMode">
+      {{!editMode ? 'Edit' : 'Save'}}
+    </button>
   </div>
 </template>
 
@@ -24,7 +25,14 @@ export default {
   data() {
     return {
       debits: [],
-      credits: []
+      credits: [],
+      editMode: false
+    }
+  },
+  methods: {
+    toggleEditMode() {
+      let old = this.editMode;
+      this.editMode = !old;
     }
   }
 };
