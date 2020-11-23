@@ -63,11 +63,15 @@ export default {
       this.editMode = !old;
     },
     onSubmitCredit() {
-      this.credits.push(this.newCredit);
+      if (!isNaN(this.newCredit)) {
+        this.credits.push(this.newCredit);
+      }
       this.newCredit = null;
     },
     onSubmitDebit() {
-      this.debits.push(this.newDebit);
+      if (!isNaN(this.newDebit)) {
+        this.debits.push(this.newDebit);
+      }
       this.newDebit = null;
     },
     removeEntry(arrayName, val) {
