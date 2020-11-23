@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-bind:class="[editMode ? 'day-editMode' : 'day']">
     {{ day }} || 
     <span v-if="credits.length">
       +{{ credits }}{{' '}}
