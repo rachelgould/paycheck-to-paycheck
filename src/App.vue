@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto mt-12">
+  <div class="container mx-auto mt-12 px-8">
     <img src="@/assets/images/Paycheck-logo.png" alt="simple budgeting" class="mx-auto mb-8">
     <div class="text-center mb-8">
       <h2 class="darkgreen font-medium text-xl text-center mb-4">
