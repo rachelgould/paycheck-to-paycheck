@@ -1,11 +1,11 @@
 <template>
   <div v-bind:class="[editMode ? 'day-editMode' : 'day']">
     {{ day }} || 
-    <span v-if="credits.length && !editMode">
-      +{{ credits }}{{' '}}
+    <span v-if="!editMode">
+      +{{ creditTotal }}{{' '}}
     </span>
-    <span v-if="debits.length && !editMode">
-      -{{ debits }}{{' '}}
+    <span v-if="!editMode">
+      -{{ debitTotal }}{{' '}}
     </span>
     <div v-if="editMode">
       Credits:
@@ -79,6 +79,14 @@ export default {
       if (ind > -1) {
         this[arrayName].splice(ind, 1);
       }
+    }
+  },
+  computed: {
+    creditTotal() {
+      return this.credits.reduce((a, b) => (a+b), 0);
+    },
+    debitTotal() {
+      return this.debits.reduce((a, b) => (a+b), 0);
     }
   }
 };
