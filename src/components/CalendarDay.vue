@@ -19,15 +19,13 @@ export default {
     day: {
       type: Number,
       required: true
-    },
-    credits: {
-      type: Number,
-      required: false
-    },
-    debits: {
-      type: Number,
-      required: false
-    },
+    }
   },
+  data() {
+    return {
+      debits: [],
+      credits: []
+    }
+  }
 };
 </script>
