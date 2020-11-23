@@ -12,7 +12,7 @@
       <ul>
         <li v-for="(credit, i) in credits" :key="`c-${day}-${i}`">
           {{credit}}
-          <button>x</button>
+          <button v-on:click="removeEntry('credits', credit)">x</button>
         </li>
       </ul>
       <form @submit.prevent="onSubmitCredit">
@@ -25,7 +25,7 @@
       <ul>
         <li v-for="(debit, i) in debits" :key="`d-${day}-${i}`">
           {{debit}}
-          <button>x</button>
+          <button v-on:click="removeEntry('debits', debit)">x</button>
         </li>
       </ul>
       <form @submit.prevent="onSubmitDebit">
@@ -69,6 +69,12 @@ export default {
     onSubmitDebit() {
       this.debits.push(this.newDebit);
       this.newDebit = null;
+    },
+    removeEntry(arrayName, val) {
+      const ind = this[arrayName].indexOf(val);
+      if (ind > -1) {
+        this[arrayName].splice(ind, 1);
+      }
     }
   }
 };
