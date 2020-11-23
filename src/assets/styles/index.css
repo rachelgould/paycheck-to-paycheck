@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.green {
+  color: #93B499;
+}
+
+.purple {
+  color: #83058A;
+}
+
+.darkgreen {
+  color: #54785A;
+}
