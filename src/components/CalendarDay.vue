@@ -1,10 +1,10 @@
 <template>
   <div>
     {{ day }} || 
-    <span v-if="credits">
+    <span v-if="credits.length">
       +{{ credits }}{{' '}}
     </span>
-    <span v-if="debits">
+    <span v-if="debits.length">
       -{{ debits }}{{' '}}
     </span>
     <button>Add Credit</button>
