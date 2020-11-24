@@ -80,12 +80,18 @@ export default {
     onSubmitCredit() {
       if (this.newCredit !== null && !isNaN(this.newCredit)) {
         this.credits.push(this.newCredit);
+        const newDayTotal = this.creditTotal - this.debitTotal;
+        const payload = { day: this.day, total: newDayTotal };
+        this.$emit('submit-day', payload);
       }
       this.newCredit = null;
     },
     onSubmitDebit() {
       if (this.newDebit !== null && !isNaN(this.newDebit)) {
         this.debits.push(this.newDebit);
+        const newDayTotal = this.creditTotal - this.debitTotal;
+        const payload = { day: this.day, total: newDayTotal };
+        this.$emit('submit-day', payload);
       }
       this.newDebit = null;
     },
@@ -98,9 +104,15 @@ export default {
   },
   computed: {
     creditTotal() {
+      if (this.credits.length === 0) {
+        return 0;
+      }
       return this.credits.reduce((a, b) => (a+b), 0);
     },
     debitTotal() {
+      if (this.debits.length === 0) {
+        return 0;
+      }
       return this.debits.reduce((a, b) => (a+b), 0);
     }
   }

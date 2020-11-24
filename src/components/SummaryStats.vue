@@ -39,7 +39,7 @@
 <script>
 export default {
   props: {
-    totalFromEntered: {
+    outstandingTotal: {
       type: Number,
       required: true
     }
@@ -61,8 +61,8 @@ export default {
   },
   computed: {
     leftOver() {
-      const newTotal = this.inAccount + this.totalFromEntered;
-      if (!isNaN) {
+      const newTotal = Number(this.inAccount) + Number(this.outstandingTotal);
+      if (this.inAccount && !isNaN(newTotal)) {
         return newTotal;
       }
       return '?';
