@@ -5,7 +5,7 @@
     </div>
     <span
       v-if="!editMode && !(creditTotal > 0 || debitTotal > 0)"
-      class="total-nocontent">
+      class="small-itals">
       To add a payment, click "edit"
     </span>
     <div 
@@ -18,33 +18,35 @@
       class="total-content negative">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg> {{ debitTotal }}
     </span>
-    <div v-if="editMode">
-      Credits:
-      <ul>
-        <li v-for="(credit, i) in credits" :key="`c-${day}-${i}`">
-          {{credit}}
-          <button v-on:click="removeEntry('credits', credit)">x</button>
-        </li>
-      </ul>
-      <form @submit.prevent="onSubmitCredit">
-        <input v-model.number="newCredit">
-        <input class="button" type="submit" value="Submit"> 
-      </form>
+    <div v-if="editMode" class="edit-container">
+      <div>
+        Credits:
+        <ul>
+          <li v-for="(credit, i) in credits" :key="`c-${day}-${i}`">
+            {{credit}}
+            <button class="small-itals" v-on:click="removeEntry('credits', credit)">(remove)</button>
+          </li>
+        </ul>
+        <form class='horiz-form' @submit.prevent="onSubmitCredit">
+          <input v-model.number="newCredit">
+          <input class="small-submit" type="submit" value="+"> 
+        </form>
+      </div>
+      <div>
+        Debits:
+        <ul>
+          <li v-for="(debit, i) in debits" :key="`d-${day}-${i}`">
+            {{debit}}
+            <button class="small-itals" v-on:click="removeEntry('debits', debit)">(remove)</button>
+          </li>
+        </ul>
+        <form class='horiz-form' @submit.prevent="onSubmitDebit">
+          <input v-model.number="newDebit">
+          <input class="small-submit" type="submit" value="+"> 
+        </form>
+      </div>
     </div>
-    <div v-if="editMode">
-      Debits:
-      <ul>
-        <li v-for="(debit, i) in debits" :key="`d-${day}-${i}`">
-          {{debit}}
-          <button v-on:click="removeEntry('debits', debit)">x</button>
-        </li>
-      </ul>
-      <form @submit.prevent="onSubmitDebit">
-        <input v-model.number="newDebit">
-        <input class="button" type="submit" value="Submit"> 
-      </form>
-    </div>
-    <button v-on:click="toggleEditMode">
+    <button v-on:click="toggleEditMode" class="edit-btn">
       {{!editMode ? 'Edit' : 'Close'}}
     </button>
   </div>
@@ -78,13 +80,13 @@ export default {
       this.editMode = !old;
     },
     onSubmitCredit() {
-      if (!isNaN(this.newCredit)) {
+      if (this.newCredit !== null && !isNaN(this.newCredit)) {
         this.credits.push(this.newCredit);
       }
       this.newCredit = null;
     },
     onSubmitDebit() {
-      if (!isNaN(this.newDebit)) {
+      if (this.newDebit !== null && !isNaN(this.newDebit)) {
         this.debits.push(this.newDebit);
       }
       this.newDebit = null;
@@ -112,6 +114,9 @@ export default {
     @apply flex items-center justify-between rounded-full py-3 px-4 my-4;
     background-color: #E7EEE8;
   }
+  .day.editMode {
+    @apply rounded-none !important;
+  }
   .day-badge {
     @apply rounded-full h-12 w-12 flex items-center justify-center bg-white text-2xl font-bold;
     color: #83058A;
@@ -122,7 +127,7 @@ export default {
   .total-content {
     @apply text-lg font-medium flex items-center justify-center;
   }
-  .total-nocontent {
+  .small-itals {
     @apply text-sm italic
   }
   .positive {
@@ -130,5 +135,24 @@ export default {
   }
   .negative {
     @apply text-red-700;
+  }
+  .edit-btn {
+    @apply flex items-center justify-between rounded-full py-3 px-4 bg-white;
+  }
+  .small-submit {
+    @apply w-full flex items-center justify-center px-1 py-2 border border-transparent text-base font-medium rounded-md text-white;
+    color: #83058A;
+  }
+  .edit-container {
+    @apply flex items-center justify-center flex-wrap;
+  }
+  .edit-container div {
+    @apply mx-4;
+  }
+  .horiz-form {
+    @apply flex;
+  }
+  .horiz-form input {
+    @apply px-2 py-1 border border-transparent placeholder-gray-500 focus:ring-offset-2 sm:max-w-xs rounded-md
   }
 </style>
