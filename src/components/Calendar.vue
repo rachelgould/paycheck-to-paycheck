@@ -3,7 +3,7 @@
     <h1 class="purple text-3xl text-center pt-12 font-bold">
       {{ currentMonth + ' ' + currentYear}}
     </h1>
-    <div class="p-8">
+    <div class="md:p-8 lg:p-8 xl:p-8">
       <CalendarDay 
         v-for="day in daysInMonth" 
         :key="day" 
