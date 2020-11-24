@@ -23,7 +23,7 @@
         <ul>
           <li v-for="(credit, i) in credits" :key="`c-${day}-${i}`" class="positive">
             + {{credit}}
-            <button class="small-itals" v-on:click="removeEntry('credits', credit)">(remove)</button>
+            <!-- <button class="small-itals" v-on:click="removeEntry('credits', credit)">(remove)</button> -->
           </li>
         </ul>
         <form class='horiz-form' @submit.prevent="onSubmitCredit">
@@ -35,7 +35,7 @@
         <ul>
           <li v-for="(debit, i) in debits" :key="`d-${day}-${i}`" class="negative">
             - {{debit}}
-            <button class="small-itals" v-on:click="removeEntry('debits', debit)">(remove)</button>
+            <!-- <button class="small-itals" v-on:click="removeEntry('debits', debit)">(remove)</button> -->
           </li>
         </ul>
         <form class='horiz-form' @submit.prevent="onSubmitDebit">
@@ -73,25 +73,26 @@ export default {
     }
   },
   methods: {
+    pushUpdatesToParent() {
+      const payload = { day: this.day, total: this.dayTotal };
+      this.$emit('submit-day', payload);
+    },
     toggleEditMode() {
       let old = this.editMode;
+      if (old) {
+        this.pushUpdatesToParent();
+      }
       this.editMode = !old;
     },
     onSubmitCredit() {
       if (this.newCredit !== null && !isNaN(this.newCredit)) {
         this.credits.push(this.newCredit);
-        const newDayTotal = this.creditTotal - this.debitTotal;
-        const payload = { day: this.day, total: newDayTotal };
-        this.$emit('submit-day', payload);
       }
       this.newCredit = null;
     },
     onSubmitDebit() {
       if (this.newDebit !== null && !isNaN(this.newDebit)) {
         this.debits.push(this.newDebit);
-        const newDayTotal = this.creditTotal - this.debitTotal;
-        const payload = { day: this.day, total: newDayTotal };
-        this.$emit('submit-day', payload);
       }
       this.newDebit = null;
     },
@@ -114,6 +115,9 @@ export default {
         return 0;
       }
       return this.debits.reduce((a, b) => (a+b), 0);
+    },
+    dayTotal() {
+      return this.creditTotal - this.debitTotal;
     }
   }
 };
