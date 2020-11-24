@@ -9,9 +9,16 @@
           <dt class="text-sm font-medium purple">
             Money In Your Account Today
           </dt>
-          <dd class="mt-1 text-3xl font-semibold text-gray-900">
+          <dd v-if="!editMode" class="mt-1 text-3xl font-semibold text-gray-900">
             $ {{ inAccount ? inAccount : '?' }}
           </dd>
+          <form v-if="editMode" class='horiz-form' @submit.prevent="onSubmit">
+            <input v-model.number="inAccount" placeholder="Enter a new amount">
+            <input class="small-submit" type="submit" value="Submit"> 
+          </form>
+          <button v-if="!editMode" v-on:click="toggleEditMode" class="text-sm italic">
+            {{!editMode ? '(Edit)' : 'Close'}}
+          </button>
         </div>
       </div>
 
@@ -39,7 +46,17 @@ export default {
   },
   data() {
     return {
-      inAccount: null
+      inAccount: null,
+      editMode: false
+    }
+  },
+  methods: {
+    toggleEditMode() {
+      let old = this.editMode;
+      this.editMode = !old;
+    },
+    onSubmit() {
+      this.toggleEditMode();
     }
   },
   computed: {
@@ -53,3 +70,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  form {
+    @apply mt-2;
+  }
+</style>
