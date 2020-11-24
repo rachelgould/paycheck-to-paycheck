@@ -1,4 +1,5 @@
 <template>
+  <SummaryStats />
   <div class="container mx-auto bg-green rounded-2xl w-11/12 lg:w-2/3 xl:w-2/3">
     <h1 class="purple text-3xl text-center pt-12 font-bold">
       {{ currentMonth + ' ' + currentYear}}
@@ -17,10 +18,12 @@
 <script>
 import moment from 'moment';
 import CalendarDay from './CalendarDay';
+import SummaryStats from './SummaryStats';
 
 export default {
   components: {
-    CalendarDay
+    CalendarDay,
+    SummaryStats
   },
   methods: {
     currentDateTime() {
