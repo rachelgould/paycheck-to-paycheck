@@ -12,7 +12,7 @@
           <dd v-if="!editMode" class="mt-1 text-3xl font-semibold text-gray-900">
             $ {{ inAccount ? inAccount : '?' }}
           </dd>
-          <form v-if="editMode" class='horiz-form' @submit.prevent="onSubmit">
+          <form class="mt-2 flex flex-col xl:flex-row" v-if="editMode" @submit.prevent="onSubmit">
             <input v-model.number="inAccount" placeholder="Enter a new amount">
             <input class="small-submit" type="submit" value="Submit"> 
           </form>
@@ -72,7 +72,11 @@ export default {
 </script>
 
 <style scoped>
-  form {
-    @apply mt-2;
+  .small-submit {
+    @apply w-full flex items-center justify-center px-1 py-2 border border-transparent text-base font-medium rounded-md text-white;
+    color: #83058A;
+  }
+  input {
+    @apply px-2 py-1 border border-transparent placeholder-gray-500 focus:ring-offset-2 sm:max-w-xs rounded-md;
   }
 </style>
