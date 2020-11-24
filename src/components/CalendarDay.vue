@@ -11,12 +11,12 @@
     <div 
       v-if="!editMode && (creditTotal > 0 || debitTotal > 0)" 
       class="total-content positive">
-       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg> {{ creditTotal }}
+       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg> ${{ creditTotal }}
     </div>
     <span 
       v-if="!editMode && (creditTotal > 0 || debitTotal > 0)" 
       class="total-content negative">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg> {{ debitTotal }}
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg> ${{ debitTotal }}
     </span>
     <div v-if="editMode" class="edit-container">
       <div class="list-container">
@@ -107,7 +107,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
   .day {
     @apply flex items-center justify-between rounded-full py-3 px-4 my-4 mx-2;
     background-color: #E7EEE8;
