@@ -5,11 +5,12 @@
 .green {
   color: #93B499;
 }
-
+.bg-green {
+  background-color: #CFDED1;
+}
 .purple {
   color: #83058A;
 }
-
 .darkgreen {
   color: #54785A;
 }
