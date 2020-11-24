@@ -19,29 +19,27 @@
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg> {{ debitTotal }}
     </span>
     <div v-if="editMode" class="edit-container">
-      <div>
-        Credits:
+      <div class="list-container">
         <ul>
-          <li v-for="(credit, i) in credits" :key="`c-${day}-${i}`">
-            {{credit}}
+          <li v-for="(credit, i) in credits" :key="`c-${day}-${i}`" class="positive">
+            + {{credit}}
             <button class="small-itals" v-on:click="removeEntry('credits', credit)">(remove)</button>
           </li>
         </ul>
         <form class='horiz-form' @submit.prevent="onSubmitCredit">
-          <input v-model.number="newCredit">
+          <input v-model.number="newCredit" placeholder="Add money coming in">
           <input class="small-submit" type="submit" value="+"> 
         </form>
       </div>
-      <div>
-        Debits:
+      <div class="list-container">
         <ul>
-          <li v-for="(debit, i) in debits" :key="`d-${day}-${i}`">
-            {{debit}}
+          <li v-for="(debit, i) in debits" :key="`d-${day}-${i}`" class="negative">
+            - {{debit}}
             <button class="small-itals" v-on:click="removeEntry('debits', debit)">(remove)</button>
           </li>
         </ul>
         <form class='horiz-form' @submit.prevent="onSubmitDebit">
-          <input v-model.number="newDebit">
+          <input v-model.number="newDebit" placeholder="Add money going out">
           <input class="small-submit" type="submit" value="+"> 
         </form>
       </div>
@@ -111,14 +109,14 @@ export default {
 
 <style scoped>
   .day {
-    @apply flex items-center justify-between rounded-full py-3 px-4 my-4;
+    @apply flex items-center justify-between rounded-full py-3 px-4 my-4 mx-2;
     background-color: #E7EEE8;
   }
   .day.editMode {
-    @apply rounded-none !important;
+    @apply rounded-none mx-0;
   }
   .day-badge {
-    @apply rounded-full h-12 w-12 flex items-center justify-center bg-white text-2xl font-bold;
+    @apply rounded-full h-12 w-12 flex items-center justify-center bg-white text-2xl font-bold px-4;
     color: #83058A;
   }
   .day-badge.today {
@@ -144,10 +142,13 @@ export default {
     color: #83058A;
   }
   .edit-container {
-    @apply flex items-center justify-center flex-wrap;
+    @apply flex flex-col items-center justify-center flex-wrap;
   }
   .edit-container div {
     @apply mx-4;
+  }
+  .edit-container ul, form {
+    @apply pb-4;
   }
   .horiz-form {
     @apply flex;
