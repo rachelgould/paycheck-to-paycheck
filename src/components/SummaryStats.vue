@@ -9,8 +9,8 @@
           <dt class="text-sm font-medium purple">
             Money In Your Account Today
           </dt>
-          <dd v-if="!editMode" class="mt-1 text-3xl font-semibold text-gray-900">
-            $ {{ inAccount ? inAccount : '?' }}
+          <dd v-if="!editMode" class="mt-1 text-3xl font-medium text-gray-900">
+            {{ inAccount ? formatMoney(inAccount) : 'Add your current balance' }}
           </dd>
           <form class="mt-2 flex flex-col xl:flex-row" v-if="editMode" @submit.prevent="onSubmit">
             <input v-model.number="inAccount" placeholder="Enter a new amount">
@@ -27,8 +27,8 @@
           <dt class="text-sm font-medium purple">
             What You'll Have Left
           </dt>
-          <dd class="mt-1 text-3xl font-semibold text-gray-900">
-            $ {{ leftOver }}
+          <dd class="mt-1 text-3xl font-medium text-gray-900">
+            {{ leftOver ? formatMoney(leftOver) : '' }}
           </dd>
         </div>
       </div>
@@ -37,6 +37,8 @@
 </template>
 
 <script>
+import { Money } from '../mixins/formatMoney';
+
 export default {
   props: {
     outstandingTotal: {
@@ -44,6 +46,7 @@ export default {
       required: true
     }
   },
+  mixins: [Money],
   data() {
     return {
       inAccount: null,
@@ -65,7 +68,7 @@ export default {
       if (this.inAccount && !isNaN(newTotal)) {
         return newTotal;
       }
-      return '?';
+      return null;
     }
   }
 }

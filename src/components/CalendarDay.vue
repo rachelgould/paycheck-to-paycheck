@@ -11,18 +11,18 @@
     <div 
       v-if="!editMode && (creditTotal > 0 || debitTotal > 0)" 
       class="total-content positive">
-       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg> ${{ creditTotal }}
+       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg> {{ formatMoney(creditTotal) }}
     </div>
     <span 
       v-if="!editMode && (creditTotal > 0 || debitTotal > 0)" 
       class="total-content negative">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg> ${{ debitTotal }}
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg> {{ formatMoney(debitTotal) }}
     </span>
     <div v-if="editMode" class="edit-container">
       <div class="list-container">
         <ul>
           <li v-for="(credit, i) in credits" :key="`c-${day}-${i}`" class="positive">
-            + {{credit}}
+            + {{formatMoney(credit)}}
             <!-- <button class="small-itals" v-on:click="removeEntry('credits', credit)">(remove)</button> -->
           </li>
         </ul>
@@ -34,7 +34,7 @@
       <div class="list-container">
         <ul>
           <li v-for="(debit, i) in debits" :key="`d-${day}-${i}`" class="negative">
-            - {{debit}}
+            - {{formatMoney(debit)}}
             <!-- <button class="small-itals" v-on:click="removeEntry('debits', debit)">(remove)</button> -->
           </li>
         </ul>
@@ -51,8 +51,10 @@
 </template>
 
 <script>
+import { Money } from '../mixins/formatMoney';
 
 export default {
+  mixins: [Money],
   props: {
     day: {
       type: Number,

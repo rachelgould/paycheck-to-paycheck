@@ -43,7 +43,7 @@ export default {
       // if (day >= this.currentDayofMonth) {
         this.outstandingTotal += total;
       }
-    }
+    },
   },
   computed: {
     currentMonth() {
