@@ -39,9 +39,10 @@ export default {
       return Number(moment().format('DD')) === Number(day);
     },
     submitDayTotal({ day, total }) {
+      if (day) {
       // if (day >= this.currentDayofMonth) {
         this.outstandingTotal += total;
-      // }
+      }
     }
   },
   computed: {
