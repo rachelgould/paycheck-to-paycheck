@@ -5,7 +5,7 @@
     </div>
     <span
       v-if="!editMode && !(creditTotal > 0 || debitTotal > 0)"
-      class="small-itals">
+      class="small-itals mx-4">
       To add a payment, click "edit"
     </span>
     <div 
@@ -123,13 +123,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
   .day {
     @apply flex items-center justify-between rounded-full py-3 px-4 my-4 mx-2;
     background-color: #E7EEE8;
   }
   .day.editMode {
-    @apply rounded-none mx-0;
+    @apply rounded-none mx-0 flex-col xl:flex-row;
   }
   .day-badge {
     @apply rounded-full h-12 w-12 flex items-center justify-center bg-white text-2xl font-bold px-4;
@@ -170,6 +170,6 @@ export default {
     @apply flex;
   }
   .horiz-form input {
-    @apply px-2 py-1 border border-transparent placeholder-gray-500 focus:ring-offset-2 sm:max-w-xs rounded-md
+    @apply px-2 py-1 border border-transparent placeholder-gray-500 focus:ring-offset-2 sm:max-w-xs rounded-md;
   }
 </style>
