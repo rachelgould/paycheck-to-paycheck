@@ -1,4 +1,6 @@
-# paycheck-to-paycheck
+# Simple Budgeting App
+
+This is my first foray into Vue – a simple one-page app to help me learn.
 
 ## Project setup
 ```
@@ -19,6 +21,3 @@ npm run build
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
