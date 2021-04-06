@@ -3,17 +3,21 @@
 @tailwind utilities;
 
 .green {
-  color: #93B499;
+  color: #d4e1d6;
 }
+
 .bg-green {
   background-color: #CFDED1;
 }
+
 .purple {
-  color: #83058A;
+  color: #83058a;
 }
+
 .darkgreen {
-  color: #54785A;
+  color: #6b726c;
 }
+
 .bg-lightgreen {
   background-color: #E7EEE8;
 }
