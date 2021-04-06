@@ -5,7 +5,9 @@
       alt="simple budgeting"
       class="mx-auto mb-8"
     />
-    <div class="text-center mb-8 w-11/12 lg:w-2/3 xl:w-2/3 mx-auto text-black">
+    <div
+      class="text-center text-black mb-8 w-11/12 lg:w-2/3 xl:w-2/3 mx-auto text-black"
+    >
       <h2 class="font-medium text-xl text-center mb-4">
         Wondering how much money you'll have at the end of the month?
       </h2>
