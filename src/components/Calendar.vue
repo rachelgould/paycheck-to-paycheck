@@ -1,10 +1,12 @@
 <template>
   <SummaryStats :outstandingTotal="outstandingTotal" />
-  <div class="container mx-auto bg-green rounded-2xl w-11/12 lg:w-2/3 xl:w-2/3">
-    <h1 class="purple text-3xl text-center pt-12 font-bold">
+  <div
+    class="container mx-auto bg-green rounded-2xl w-11/12 lg:w-2/3 xl:w-2/3 md:p-8 lg:p-8 xl:p-8"
+  >
+    <h1 class="h1-purple">
       {{ currentMonth + " " + currentYear }}
     </h1>
-    <div class="md:p-8 lg:p-8 xl:p-8">
+    <div>
       <CalendarDay
         @submit-day="submitDayTotal"
         v-for="day in daysInMonth"

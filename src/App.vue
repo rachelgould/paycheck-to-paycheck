@@ -5,11 +5,11 @@
       alt="simple budgeting"
       class="mx-auto mb-8"
     />
-    <div class="text-center mb-8 w-11/12 lg:w-2/3 xl:w-2/3 mx-auto">
-      <h2 class="darkgreen font-medium text-xl text-center mb-4">
+    <div class="text-center mb-8 w-11/12 lg:w-2/3 xl:w-2/3 mx-auto text-black">
+      <h2 class="font-medium text-xl text-center mb-4">
         Wondering how much money you'll have at the end of the month?
       </h2>
-      <p class="darkgreen">
+      <p>
         <span class="font-medium">Tip:</span> Start by entering how much is in
         your account right now, and then fill in any payments or expenses for
         the remainder of the month.

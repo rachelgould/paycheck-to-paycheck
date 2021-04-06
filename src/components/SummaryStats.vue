@@ -2,7 +2,7 @@
   <div
     class="container mx-auto bg-green rounded-2xl w-11/12 lg:w-2/3 xl:w-2/3 mb-4 p-8"
   >
-    <h3 class="purple text-xl font-medium">
+    <h3 class="h1-purple">
       How You're Doing This Month
     </h3>
     <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">

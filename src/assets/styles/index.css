@@ -21,3 +21,12 @@
 .bg-lightgreen {
   background-color: #E7EEE8;
 }
+
+.h1-purple {
+  @apply purple;
+  @apply text-3xl;
+  @apply text-center;
+  @apply pt-4;
+  @apply pb-2;
+  @apply font-bold;
+}
